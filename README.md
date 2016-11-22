@@ -155,11 +155,11 @@ ssh-keyscan example.com >> ${HOME}/.ssh/known_hosts
 # Setup SSH Tunnel
 # This is an example of forwarding local port 3306 to the remote servers port 3306 (usually mysql)
 #
-# autossh will monitor port 3306. If the connection dies autossh will automatically set up a new one.
+# autossh will use port 33306 as a monitoring port. If the connection dies autossh will automatically set up a new one.
 # ServerAliveInterval: Number of seconds between sending a packet to the server (to keep the connection alive).
 # ClientAliveCountMax: Number of above ServerAlive packets before closing the connection. Autossh will create a new connection when this happens.
 
-autossh -M 3306 -f -N -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3"  -L 3306:localhost:3306 user@example.com
+autossh -M 33306 -f -N -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3"  -L 3306:localhost:3306 user@example.com
 ```
 
 There you have it. Push your project up to Heroku and now you have a reliable SSH tunnel to a service of your choice hosted remotely.
