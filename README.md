@@ -3,7 +3,7 @@ This is a Heroku buildpack that adds autossh to your heroku build.
 
 autossh is a program to start a copy of ssh and monitor it, restarting
 it as necessary should it die or stop passing traffic.
-More information about autossh can be found here: 
+More information about autossh can be found here:
 http://www.harding.motd.ca/autossh/
 
 ## Usage
@@ -17,7 +17,7 @@ $ git push heroku master
 -----> Fetching custom git buildpack... done
 -----> autossh app detected
 -----> Installing autossh
-       Downloading autossh version 1.4e...
+       Downloading autossh version 1.4f...
        Building autossh...
        Cleaning up...
        Installation successful!
@@ -29,7 +29,7 @@ $ git push heroku master
 ```
 
 When the build is complete you will be able to use autossh. It can be tested by doing the following:
- 
+
 ```
 $ heroku run bash
 $ autossh
