@@ -27,31 +27,31 @@ cp $BP_DIR/profile/* $BUILD_DIR/.profile.d/
 ### Installation
 
 download_autossh() {
-  echo "       Downloading autossh version 1.4e..."
-  download_url="http://www.harding.motd.ca/autossh/autossh-1.4e.tgz"
+  echo "       Downloading autossh version 1.4f..."
+  download_url="http://www.harding.motd.ca/autossh/autossh-1.4f.tgz"
   curl $download_url -s -o - | tar -xz -C $CACHE_DIR/autossh
 }
 
 build_autossh() {
   echo "       Building autossh..."
-  cd $CACHE_DIR/autossh/autossh-1.4e
+  cd $CACHE_DIR/autossh/autossh-1.4f
   ./configure --quiet
   make --quiet
 }
 
 cleanup() {
   echo "       Cleaning up..."
-  find $CACHE_DIR/autossh/autossh-1.4e -type f  | grep -v "autossh$" | xargs rm
+  find $CACHE_DIR/autossh/autossh-1.4f -type f  | grep -v "autossh$" | xargs rm
 }
 
 install_autossh() {
-  cp $CACHE_DIR/autossh/autossh-1.4e/autossh $BUILD_DIR/.heroku/autossh
+  cp $CACHE_DIR/autossh/autossh-1.4f/autossh $BUILD_DIR/.heroku/autossh
   chmod +x $BUILD_DIR/.heroku/autossh/autossh
   echo "       Installation successful!"
 }
 
 echo "-----> Installing autossh"
-if [ ! -f $CACHE_DIR/autossh/autossh-1.4e/autossh ]; then
+if [ ! -f $CACHE_DIR/autossh/autossh-1.4f/autossh ]; then
   download_autossh
   build_autossh
   cleanup
