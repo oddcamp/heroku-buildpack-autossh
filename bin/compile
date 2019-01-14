@@ -28,7 +28,7 @@ cp $BP_DIR/profile/* $BUILD_DIR/.profile.d/
 
 download_autossh() {
   echo "       Downloading autossh version 1.4f..."
-  download_url="http://www.harding.motd.ca/autossh/autossh-1.4f.tgz"
+  download_url="https://www.harding.motd.ca/autossh/autossh-1.4f.tgz"
   curl $download_url -s -o - | tar -xz -C $CACHE_DIR/autossh
 }
 
