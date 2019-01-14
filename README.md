@@ -9,7 +9,7 @@ http://www.harding.motd.ca/autossh/
 ## Usage
 
 ```
-$ heroku create --buildpack https://github.com/kollegorna/heroku-buildpack-autossh
+$ heroku create --buildpack kollegorna/autossh
 
 $ git push heroku master
 ...
@@ -68,18 +68,12 @@ Environment variables are:
 
 We will now go through setting up a persistant SSH tunnel from a Heroku build to a service provided on a remote server.
 
-Most probably, you would like a Heroku build with more than just autossh. In this example we will use both the autossh and ruby buildpacks by leveraging Heroku's multi buildpack (https://github.com/heroku/heroku-buildpack-multi).
+Most probably, you would like a Heroku build with more than just autossh. In this example we will use both the autossh and ruby buildpacks by leveraging [Heroku's multi buildpack support](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app).
 
 ```
-$ heroku create --buildpack https://github.com/heroku/heroku-buildpack-multi.git
-```
-
-In your project add a `.buildpacks` file.
-
-```
-# .buildpacks
-https://github.com/kollegorna/heroku-buildpack-autossh.git
-https://github.com/heroku/heroku-buildpack-ruby.git#v138
+$ heroku create 
+$ heroku buildpacks:add kollegorna/autossh
+$ heroku buildpacks:add https://github.com/heroku/heroku-buildpack-ruby.git#v138
 ```
 
 This file informs Heroku to build the project using each of these buildpacks respectively. When pushing up your project you should see the following:
@@ -163,3 +157,11 @@ autossh -M 33306 -f -N -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3"  -
 ```
 
 There you have it. Push your project up to Heroku and now you have a reliable SSH tunnel to a service of your choice hosted remotely.
+
+## Using the latest buildpack code
+
+The `kollegorna/autossh` buildpack from the [Heroku Registry](https://devcenter.heroku.com/articles/buildpack-registry) represents the latest stable version of the buildpack. If you'd like to use the latest buildpack code from this Github repository, you can set your buildpack to the Github URL:
+
+```sh-session
+$ heroku buildpacks:set https://github.com/kollegorna/heroku-buildpack-autossh.git
+```
